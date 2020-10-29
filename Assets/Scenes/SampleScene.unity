@@ -1169,7 +1169,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   startWaypoint: {fileID: 1771242403}
-  endWaypoint: {fileID: 278779468}
+  endWaypoint: {fileID: 1665010892}
 --- !u!4 &1476140051 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 6434035219198679779, guid: 211b3fa5807a6bc4da5c85b83936f00d,

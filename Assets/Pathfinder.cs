@@ -6,6 +6,10 @@ using UnityEngine;
 public class Pathfinder : MonoBehaviour
 {
     Dictionary<Vector2Int, Waypoint> grid = new Dictionary<Vector2Int, Waypoint>();
+    Queue<Waypoint> queue = new Queue<Waypoint>();
+    bool isRunning = true;
+
+
     [SerializeField] Waypoint startWaypoint, endWaypoint;
     Vector2Int[] directions =
     {
@@ -20,19 +24,55 @@ public class Pathfinder : MonoBehaviour
     {
         LoadBlocks();
         ColorStartEndPoint();
-        ExploreNeighbours();
+        Pathfind();
+        //ExploreNeighbours();
     }
 
-    private void ExploreNeighbours()
+    private void Pathfind()
     {
+        queue.Enqueue(startWaypoint);
+
+        while (queue.Count > 0 && isRunning)
+        {
+            Waypoint searchCenter = queue.Dequeue();
+            searchCenter.isExplored = true;
+            HaltIfEndFound(searchCenter);
+            ExploreNeighbours(searchCenter);
+        }
+    }
+
+    private void HaltIfEndFound(Waypoint searchCenter)
+    {
+        if (searchCenter == endWaypoint)
+        {
+            print("You have found the exit!");
+            isRunning = false;
+        }
+    }
+
+    private void ExploreNeighbours(Waypoint from)
+    {
+        if (!isRunning) { return; }
+
         foreach (Vector2Int direction in directions)
         {
-            Vector2Int explorationCoordinates = startWaypoint.GetGridPos() + direction;
+            Vector2Int neighbourCoordinates = from.GetGridPos() + direction;
             
-            if (grid.ContainsKey(explorationCoordinates))
+            if (grid.ContainsKey(neighbourCoordinates))
             {
-                grid[explorationCoordinates].SetTopColor(Color.yellow);
+                QueueNewNeighbours(neighbourCoordinates);
             }
+        }
+    }
+
+    private void QueueNewNeighbours(Vector2Int neighbourCoordinates)
+    {
+        Waypoint neighbour = grid[neighbourCoordinates];
+        if (!neighbour.isExplored)
+        {
+            neighbour.SetTopColor(Color.yellow);
+            queue.Enqueue(neighbour);
+            print("Queueing: " + neighbour);
         }
     }
 
@@ -44,7 +84,7 @@ public class Pathfinder : MonoBehaviour
 
     private void LoadBlocks()
     {
-        var waypoints = FindObjectsOfType<Waypoint>();
+        Waypoint[] waypoints = FindObjectsOfType<Waypoint>();
         
         foreach (var waypoint in waypoints)
         {
