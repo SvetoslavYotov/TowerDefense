@@ -26,7 +26,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 140110606335809440}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0.12000275, y: 6.3600006, z: 6.5200005}
+  m_LocalPosition: {x: -0.3, y: 6.3600006, z: 6.5200005}
   m_LocalScale: {x: 2, y: 2, z: 2}
   m_Children: []
   m_Father: {fileID: 6028597638942915504}
@@ -4738,7 +4738,7 @@ ParticleSystemRenderer:
   m_CameraVelocityScale: 0
   m_VelocityScale: 0
   m_LengthScale: 2
-  m_SortingFudge: 0
+  m_SortingFudge: 1
   m_NormalDirection: 1
   m_ShadowBias: 0
   m_RenderAlignment: 0
@@ -4801,6 +4801,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   objectToPan: {fileID: 6028597638942915504}
   targetedEnemy: {fileID: 0}
+  attackRange: 50
+  projectilePartile: {fileID: 8913153013326724528}
 --- !u!1001 &6027914023355699160
 PrefabInstance:
   m_ObjectHideFlags: 0
