@@ -1470,11 +1470,6 @@ PrefabInstance:
       propertyPath: targetedEnemy
       value: 
       objectReference: {fileID: 3887947732844286264}
-    - target: {fileID: 6633718705388583034, guid: c0f55837c2beb134c88c99a766b7ee68,
-        type: 3}
-      propertyPath: attackRange
-      value: 50
-      objectReference: {fileID: 0}
     - target: {fileID: 6633718705388583035, guid: c0f55837c2beb134c88c99a766b7ee68,
         type: 3}
       propertyPath: m_Name
@@ -5394,6 +5389,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1856461619}
+  - component: {fileID: 1856461620}
   m_Layer: 0
   m_Name: Enemies
   m_TagString: Untagged
@@ -5416,6 +5412,21 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 7
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1856461620
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1856461618}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a3ca68032ae249647afba14ca7cfe5d5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  secondsBetweenSpawns: 3
+  enemyPrefab: {fileID: 3887947732844286263, guid: 98f732413e8185140932b9d07719159a,
+    type: 3}
 --- !u!1001 &2021885291
 PrefabInstance:
   m_ObjectHideFlags: 0

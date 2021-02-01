@@ -11,14 +11,17 @@ public class Pathfinder : MonoBehaviour
     Waypoint searchCenter;
     
     List<Waypoint> path = new List<Waypoint>(); //todo Make private
+   
     public List<Waypoint> GetPath()
     {
-        LoadBlocks();
-        ColorStartEndPoint();
-        BeardthFirstSearch();
-        CreatePath();
+        if (path.Count == 0)
+        {
+            CalculatePath();
+        }
         return path;
     }
+
+   
 
     [SerializeField] Waypoint startWaypoint, endWaypoint;
     Vector2Int[] directions =
@@ -28,6 +31,14 @@ public class Pathfinder : MonoBehaviour
         Vector2Int.down,
         Vector2Int.left
     };
+
+    private void CalculatePath()
+    {
+        LoadBlocks();
+        ColorStartEndPoint();
+        BeardthFirstSearch();
+        CreatePath();
+    }
 
     private void CreatePath()
     {
