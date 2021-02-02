@@ -21,8 +21,6 @@ public class Pathfinder : MonoBehaviour
         return path;
     }
 
-   
-
     [SerializeField] Waypoint startWaypoint, endWaypoint;
     Vector2Int[] directions =
     {
@@ -35,23 +33,29 @@ public class Pathfinder : MonoBehaviour
     private void CalculatePath()
     {
         LoadBlocks();
-        ColorStartEndPoint();
         BeardthFirstSearch();
         CreatePath();
     }
 
     private void CreatePath()
     {
-        path.Add(endWaypoint);
-        
+        SetAsPath(endWaypoint);
+
         Waypoint previous = endWaypoint.exploredFrom;
         while (previous != startWaypoint)
         {
-            path.Add(previous);
+            SetAsPath(previous);
             previous = previous.exploredFrom;
         }
-        path.Add(startWaypoint);
+        
+        SetAsPath(startWaypoint);
         path.Reverse();
+    }
+
+    private void SetAsPath(Waypoint waypoint)
+    {
+        path.Add(waypoint);
+        waypoint.isPlaceable = false;
     }
 
     private void BeardthFirstSearch()
@@ -71,7 +75,6 @@ public class Pathfinder : MonoBehaviour
     {
         if (searchCenter == endWaypoint)
         {
-            print("You have found the exit!");
             isRunning = false;
         }
     }
@@ -101,11 +104,7 @@ public class Pathfinder : MonoBehaviour
         }
     }
 
-    private void ColorStartEndPoint()
-    {
-        startWaypoint.SetTopColor(Color.blue);
-        endWaypoint.SetTopColor(Color.red);
-    }
+  
 
     private void LoadBlocks()
     {
