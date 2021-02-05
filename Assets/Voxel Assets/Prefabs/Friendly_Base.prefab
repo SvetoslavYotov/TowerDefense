@@ -106,6 +106,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6b8ae91b8ae2d4f4e95ab6e29fbdb661, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  baseHealth: 10
   healthDecrease: 1
   healthText: {fileID: 0}
+  baseReachedSFX: {fileID: 8300000, guid: 1c26b72e796e63341b16b2bcfb77862b, type: 3}
